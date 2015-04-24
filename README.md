@@ -73,14 +73,17 @@ server.on('ContentManagement.Asset.unpublish', function(req){
 
 ## Special events
 
-The server emits the incoming Contentful webhook topic as event, so you can:
+The server emits a special wildcard event that for all successful requests as well, so you can:
 
 ```javascript
 
 // Handler for all successful requests
 // Is not emitted when an error occurs
-server.on('ContentManagement.*', function(req){
-  // ...
+server.on('ContentManagement.*', function(topic, req){
+
+  // topic is available as string
+  // => e.g. ContentManagement.Asset.unpublish
+  console.log('Request came in for: ' + topic);
 });
 ```
 
