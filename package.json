@@ -1,0 +1,29 @@
+{
+  "name": "contentful-webhook-server",
+  "version": "0.1.0",
+  "description": "Server to handle Contentful webhook HTTP requests",
+  "keywords": [
+    "contentful",
+    "webhook"
+  ],
+  "author": {
+    "name": "Jurgen Van de Moere",
+    "email": "jurgen.van.de.moere@gmail.com",
+    "url": "http://www.jvandemo.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/jvandemo/contentful-webhook-server.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "license": "MIT",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "chai": "^2.2.0",
+    "mocha": "^2.2.4"
+  }
+}
