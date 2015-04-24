@@ -1,6 +1,6 @@
 # Contentful webhook server
 
-[![Build Status](https://travis-ci.org/jvandemo/angular-webhook-server.svg?branch=master)](https://travis-ci.org/jvandemo/angular-webhook-server)
+[![Build Status](https://travis-ci.org/jvandemo/contentful-webhook-server.svg?branch=master)](https://travis-ci.org/jvandemo/contentful-webhook-server)
 
 Webhooks in [Contentful](https://www.contentful.com) can notify you when content has changed. 
 
