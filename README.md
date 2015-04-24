@@ -34,6 +34,11 @@ server.on('ContentManagement.error', function(err, req){
 server.on('ContentManagement.ContentType.publish', function(req){
   // ...
 });
+
+// Start listening for requests
+server.listen(3000, function(){
+  console.log('Contentful webhook server running on port ' + 3000)
+});
 ```
 
 ## Events
