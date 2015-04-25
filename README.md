@@ -114,6 +114,11 @@ MIT
 
 ## Change log
 
+### 0.2.0
+
+- Added unit tests
+- Updated documentation
+
 ### 0.1.0
 
 - Initial version
