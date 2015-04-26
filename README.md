@@ -116,6 +116,11 @@ server.on('ContentManagement.Asset.unpublish', function(req){
 });
 ```
 
+> This module does not make any assumptions about your application and does **NOT** attempt to parse or extract the contents of the request.
+
+> Instead it passes the [request](https://nodejs.org/api/http.html#http_http_incomingmessage) to your handler(s) so you can process (or ignore) the contents of the [incoming message](https://nodejs.org/api/http.html#http_http_incomingmessage) from within your handler(s).
+
+
 ## Special wildcard event
 
 The server emits a special wildcard event too in case you want to listen to all events in one go:
