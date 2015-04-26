@@ -4,10 +4,11 @@
 
 Webhooks in [Contentful](https://www.contentful.com) notify you when content in your space has changed.
 
-Contentful webhook server is a very lightweight server that allows you to handle these notifications.
+Contentful webhook server is a lightweight server to handle these notifications:
 
-- automatically validates incoming [Contentful webhook HTTP requests](https://www.contentful.com/developers/documentation/content-delivery-api/#webhooks)
+- handles incoming [Contentful webhook HTTP requests](https://www.contentful.com/developers/documentation/content-delivery-api/#webhooks)
 - emits events for all Contentful webhook topics to allow easy webhook handling
+- supports username/password authentication
 - supports all default [node HTTP server](https://nodejs.org/api/http.html) options
 
 ## Installation
