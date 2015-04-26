@@ -1,10 +1,11 @@
 var server = require('../index.js')({
-  path: '/hello'
+  path: '/',
+  username: 'user',
+  password: 'pass'
 });
 
 server.on('ContentManagement.error', function(err, req){
-  console.log('Error: ' + err);
-  console.log(req.url);
+  console.log(err);
 });
 
 server.on('ContentManagement.ContentType.publish', function(req){

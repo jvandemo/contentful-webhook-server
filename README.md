@@ -19,60 +19,105 @@ $ npm install contentful-webhook-server
 ## Quick example
 
 ```javascript
-// Create server
+// Create webhook server
 var server = require('contentful-webhook-server')({
-  path: '/'
+  path: '/',
+  username: 'user',
+  password: 'pass'
 });
 
-// Handle errors
-server.on('ContentManagement.error', function(err, req){
-  console.log(err);
-});
-
-// Do something when entry is published on Contentful
+// Attach handlers to Contentful webhooks
 server.on('ContentManagement.ContentType.publish', function(req){
-  // ...
+  console.log('A content type was published!');
 });
 
-// Start listening for requests
+// Start listening for requests on port 3000
+server.listen(3000, function(){
+  console.log('Contentful webhook server running on port ' + 3000)
+});
+
+```
+
+## Configuration
+
+You can pass a configuration object when instantiating the server:
+
+```javascript
+// Create webhook server
+var server = require('contentful-webhook-server')({
+  path: '/',
+  username: 'user',
+  password: 'pass'
+});
+```
+
+where:
+
+- **path**: the path you want the server to listen on, default: '/'
+- **username**: the username you expect the request to contain, default: ''
+- **password**: the password you expect the request to contain, default: ''
+
+So to start a server on `localhost:3000` without authentication, you can:
+
+```javascript
+// Create server with default options
+var server = require('contentful-webhook-server')();
+
+// Start listening for requests on port 3000
 server.listen(3000, function(){
   console.log('Contentful webhook server running on port ' + 3000)
 });
 ```
 
-## Events
-
-The server emits the incoming Contentful webhook topic as event, so you can:
+and to start a server on `localhost:3000/webhooks` with authentication, you can:
 
 ```javascript
-server.on('ContentManagement.ContentType.publish', function(req){
-  // ...
+// Create server with default options
+var server = require('contentful-webhook-server')({
+  path: '/webhooks',
+  username: 'user',
+  password: 'pass'
 });
 
-server.on('ContentManagement.ContentType.unpublish', function(req){
-  // ...
-});
-
-server.on('ContentManagement.Entry.publish', function(req){
-  // ...
-});
-
-server.on('ContentManagement.Entry.unpublish', function(req){
-  // ...
-});
-
-server.on('ContentManagement.Asset.publish', function(req){
-  // ...
-});
-
-server.on('ContentManagement.Asset.unpublish', function(req){
-  // ...
+// Start listening for requests on port 3000
+server.listen(3000, function(){
+  console.log('Contentful webhook server running on port ' + 3000)
 });
 ```
 
-## Special events
+## Handling incoming webhook requests
 
-The server emits a special wildcard event that for all successful requests as well, so you can:
+The server emits incoming Contentful webhook topics as event, so you can:
+
+```javascript
+server.on('ContentManagement.ContentType.publish', function(req){
+  console.log('A content type was published!');
+});
+
+server.on('ContentManagement.ContentType.unpublish', function(req){
+  console.log('A content type was unpublished!');
+});
+
+server.on('ContentManagement.Entry.publish', function(req){
+  console.log('An entry was published!');
+});
+
+server.on('ContentManagement.Entry.unpublish', function(req){
+  console.log('An entry was unpublished!');
+});
+
+server.on('ContentManagement.Asset.publish', function(req){
+  console.log('An asset was published!');
+});
+
+server.on('ContentManagement.Asset.unpublish', function(req){
+  console.log('An asset was unpublished!');
+});
+```
+
+## Special wildcard event
+
+The server emits a special wildcard event too in case you want to listen to all events in one go:
 
 ```javascript
 
@@ -86,9 +131,11 @@ server.on('ContentManagement.*', function(topic, req){
 });
 ```
 
-## Handling invalid requests
+> This event is only emitted on successful requests, not on errors
 
-When an invalid request comes in, an error is emitted:
+## Handling errors and invalid requests
+
+When an invalid request comes in, a `ContentManagement.error` event is emitted:
 
 ```javascript
 // Handle errors
@@ -99,8 +146,16 @@ server.on('ContentManagement.error', function(err, req){
 
 ## Simulating a request using curl
 
+If you want to try out your server during development, you can simulate a request without credentials using cUrl:
+
 ```bash
 $ curl -X POST --header "X-Contentful-Topic: ContentManagement.Entry.publish" localhost:3000
+```
+
+and simulate requests with authentication like this:
+
+```bash
+$ curl -X POST -u user:pass --header "X-Contentful-Topic: ContentManagement.Entry.publish" localhost:3000
 ```
 
 ## Example
@@ -112,6 +167,11 @@ A working example is included [here](examples/webhook-server.js).
 MIT
 
 ## Change log
+
+### 1.0.0
+
+- Added authentication support
+- Updated documentation
 
 ### 0.2.0
 
