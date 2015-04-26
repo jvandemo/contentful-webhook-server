@@ -182,6 +182,11 @@ MIT
 
 ## Change log
 
+### 1.1.0
+
+- Added working example
+- Updated documentation
+
 ### 1.0.0
 
 - Added authentication support
