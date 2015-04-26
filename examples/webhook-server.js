@@ -1,4 +1,6 @@
-var server = require('../index.js')();
+var server = require('../index.js')({
+  path: '/hello'
+});
 
 server.on('ContentManagement.error', function(err, req){
   console.log('Error: ' + err);

@@ -21,8 +21,7 @@ $ npm install contentful-webhook-server
 ```javascript
 // Create server
 var server = require('contentful-webhook-server')({
-  path: '/',
-  secret: 'your-secret'
+  path: '/'
 });
 
 // Handle errors
