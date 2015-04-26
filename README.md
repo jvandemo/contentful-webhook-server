@@ -8,7 +8,6 @@ Contentful webhook server is a very lightweight server to handle such [Contentfu
 
 - returns a [node HTTP server](https://nodejs.org/api/http.html) so all HTTP server options are supported
 - emits events for all Contentful webhook topics
-- does not have any third party dependencies!
 
 ## Installation
 
