@@ -2,12 +2,13 @@
 
 [![Build Status](https://travis-ci.org/jvandemo/contentful-webhook-server.svg?branch=master)](https://travis-ci.org/jvandemo/contentful-webhook-server)
 
-Webhooks in [Contentful](https://www.contentful.com) can notify you when content has changed. 
+Webhooks in [Contentful](https://www.contentful.com) notify you when content in your space has changed.
 
-Contentful webhook server is a very lightweight server to handle such [Contentful webhook HTTP requests](https://www.contentful.com/developers/documentation/content-delivery-api/#webhooks):
+Contentful webhook server is a very lightweight server that allows you to handle these notifications.
 
-- returns a [node HTTP server](https://nodejs.org/api/http.html) so all HTTP server options are supported
-- emits events for all Contentful webhook topics
+- automatically validates incoming [Contentful webhook HTTP requests](https://www.contentful.com/developers/documentation/content-delivery-api/#webhooks)
+- emits events for all Contentful webhook topics to allow easy webhook handling
+- supports all default [node HTTP server](https://nodejs.org/api/http.html) options
 
 ## Installation
 
@@ -156,6 +157,14 @@ and simulate requests with authentication like this:
 ```bash
 $ curl -X POST -u user:pass --header "X-Contentful-Topic: ContentManagement.Entry.publish" localhost:3000
 ```
+
+## Enabling webhooks in Contentful
+
+To enable webhooks in your Contentful space, go to your space settings and fill in the options you specified in your server configuration:
+
+![contentful-webhook](https://cloud.githubusercontent.com/assets/1859381/7337492/fc2b25e6-ec2b-11e4-99ef-ddaba53e77a6.png)
+
+As soon as you save the webhook in Contentful, your server will start receiving notifications.
 
 ## Example
 
