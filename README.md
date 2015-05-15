@@ -182,6 +182,10 @@ MIT
 
 ## Change log
 
+### 1.2.0
+
+- Added ability to mount as middleware
+
 ### 1.1.0
 
 - Added working example

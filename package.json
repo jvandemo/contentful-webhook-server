@@ -1,6 +1,6 @@
 {
   "name": "contentful-webhook-server",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Server to handle Contentful webhook HTTP requests",
   "keywords": [
     "contentful",
